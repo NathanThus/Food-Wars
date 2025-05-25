@@ -1,0 +1,17 @@
+{
+    "name": "FoodWars.UI.Weapons.Editor",
+    "rootNamespace": "FoodWars.UI.Weapons.Editor",
+    "references": [
+        "GUID:85d0d196ee15fcc418ffbebf57b8b9c3",
+        "GUID:76dcebb19c4ddd244b509fb161092e35"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
