@@ -9,10 +9,16 @@ namespace FoodWars.Weapons
 {
     public class Gun : MonoBehaviour
     {
+        #region Events
+
+        public event Action<int> OnMagazineChange;
+
+        #endregion
+
         #region  Serialized Fields
 
         [SerializeField] private BulletType _type;
-        
+
         [Header("Stats")]
         [SerializeReference] private BulletSolution _BulletStats;
         [SerializeField] private float _fireDelaySeconds;
@@ -68,12 +74,14 @@ namespace FoodWars.Weapons
             _reloadAction.Disable();
             _fireAction.performed -= HandleFireAsync;
             _fireAction.Disable();
+            OnMagazineChange = null;
         }
 
         void OnDestroy()
         {
             _cancellationTokenSource.Cancel();
             _cancellationTokenSource.Dispose();
+            OnMagazineChange = null;
         }
 
         #endregion
@@ -105,6 +113,7 @@ namespace FoodWars.Weapons
                 }
 
                 _currentRounds--;
+                OnMagazineChange?.Invoke(_currentRounds);
                 _BulletStats.Fire();
                 await UniTask.WaitForSeconds(_fireDelaySeconds, cancellationToken: _cancellationTokenSource.Token);
             }
@@ -119,7 +128,7 @@ namespace FoodWars.Weapons
             await UniTask.WaitForSeconds(_reloadTimeSeconds, cancellationToken: _cancellationTokenSource.Token);
 
             _currentRounds = _magazineSize;
-
+            OnMagazineChange?.Invoke(_currentRounds);
             _isBusy = false;
         }
 
