@@ -26,9 +26,6 @@ namespace FoodWars.Weapons
         [SerializeField] private Animator _animator;
         [SerializeField] private ParticleSystem _muzzleFlash;
 
-        [Header("Dependencies")]
-        [SerializeField] private Transform _muzzle;
-
         #endregion
 
         #region Fields
@@ -59,6 +56,7 @@ namespace FoodWars.Weapons
 
         public void OnEnable()
         {
+            _fireAction.performed += HandleFireAsync;
             _reloadAction.performed += HandleReload;
             _reloadAction.Enable();
             _fireAction.Enable();
