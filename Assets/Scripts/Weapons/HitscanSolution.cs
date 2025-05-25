@@ -9,7 +9,6 @@ namespace FoodWars.Weapons
     public class HitscanSolution : BulletSolution
     {
         [SerializeField] private float _range;
-        [SerializeField] private Transform _thisObj;
         [SerializeField] private LayerMask _layerMask;
         public HitscanSolution()
         {
@@ -17,6 +16,10 @@ namespace FoodWars.Weapons
 
         public override void Fire()
         {
+            if (!Physics.Raycast(new Ray(_muzzleTransform.position, _muzzleTransform.forward), out RaycastHit hit, _range))
+                return;
+
+            Debug.Log("Hit!");
         }
     }
 }
