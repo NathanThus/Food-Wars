@@ -9,7 +9,7 @@ namespace FoodWars.Weapons
     public class ProjectileSolution : BulletSolution
     {
         [SerializeField] private float _speed;
-        [SerializeField] private GameObject _projectileObject;
+        [SerializeField] private Rigidbody _projectileObject;
         public ProjectileSolution()
         {
         }

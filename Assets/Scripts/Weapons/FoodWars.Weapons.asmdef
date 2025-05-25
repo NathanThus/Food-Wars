@@ -2,7 +2,9 @@
     "name": "FoodWars.Weapons",
     "rootNamespace": "FoodWars.Weapons",
     "references": [
-        "GUID:f51ebe6a0ceec4240a699833d6309b23"
+        "GUID:f51ebe6a0ceec4240a699833d6309b23",
+        "GUID:75469ad4d38634e559750d17036d5f7c",
+        "GUID:4de7c1af49569c44283698688fdcb2d0"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

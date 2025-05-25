@@ -9,13 +9,14 @@ namespace FoodWars.Weapons
     public class HitscanSolution : BulletSolution
     {
         [SerializeField] private float _range;
+        [SerializeField] private Transform _thisObj;
+        [SerializeField] private LayerMask _layerMask;
         public HitscanSolution()
         {
         }
 
         public override void Fire()
         {
-            base.Fire();
         }
     }
 }
