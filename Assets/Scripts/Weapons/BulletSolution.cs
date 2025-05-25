@@ -8,9 +8,9 @@ namespace FoodWars.Weapons
     [Serializable]
     public class BulletSolution
     {
-        [SerializeField] private readonly string _name;
-        [SerializeField] private float _damage;
-
+        [SerializeField] protected readonly string _name;
+        [SerializeField] protected float _damage;
+        [SerializeField] protected Transform _muzzleTransform;
 
         public float Damage => _damage;
 
