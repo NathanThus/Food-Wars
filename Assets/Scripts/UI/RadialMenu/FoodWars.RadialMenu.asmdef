@@ -1,6 +1,6 @@
 {
-    "name": "FoodWars.UI.Weapons",
-    "rootNamespace": "FoodWars.UI.Weapons",
+    "name": "FoodWars.RadialMenu",
+    "rootNamespace": "FoodWars.RadialMenu",
     "references": [
         "GUID:85d0d196ee15fcc418ffbebf57b8b9c3",
         "GUID:4de7c1af49569c44283698688fdcb2d0",
