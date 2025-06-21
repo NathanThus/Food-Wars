@@ -36,7 +36,7 @@ namespace FoodWars.UI.Weapons
 
         private void Start()
         {
-            HandleWeaponSwitch();
+            _currentGun.OnMagazineChange += _magazineUI.HandleWeaponFire;
         }
 
         private void OnEnable()
@@ -69,11 +69,23 @@ namespace FoodWars.UI.Weapons
             throw new NotImplementedException();
         }
 
-        private void HandleWeaponSwitch()
+        #endregion
+
+        #region Public
+
+        public void SwitchWeapon(GunType next)
         {
+            Gun selectedGun = _guns.Find(gun => gun.GunType == next);
+
+            if (selectedGun == null) throw new ArgumentOutOfRangeException(nameof(GunType));
+
             _currentGun.OnMagazineChange -= _magazineUI.HandleWeaponFire;
-            // Switch Weapon Here
+            _currentGun.enabled = false;
+
+            selectedGun = _currentGun;
+
             _currentGun.OnMagazineChange += _magazineUI.HandleWeaponFire;
+            _currentGun.enabled = true;
         }
 
         #endregion
