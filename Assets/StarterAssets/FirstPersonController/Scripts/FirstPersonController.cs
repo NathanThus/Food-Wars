@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Foodwars.UserInputActions;
+using UnityEngine;
 #if ENABLE_INPUT_SYSTEM
 using UnityEngine.InputSystem;
 #endif

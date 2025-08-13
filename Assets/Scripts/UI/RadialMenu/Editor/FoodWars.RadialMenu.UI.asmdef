@@ -1,0 +1,16 @@
+{
+    "name": "FoodWars.RadialMenu.UI",
+    "rootNamespace": "FoodWars.RadialMenu.UI",
+    "references": [
+        "GUID:d1b9ccb47defa35429a47440dea77208"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
