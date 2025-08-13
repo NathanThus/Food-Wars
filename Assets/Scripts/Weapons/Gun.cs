@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using MoreMountains.Feedbacks;
 
 namespace FoodWars.Weapons
 {
@@ -18,6 +19,8 @@ namespace FoodWars.Weapons
         #region  Serialized Fields
 
         [SerializeField] private BulletType _type;
+        [SerializeField] private GunType gunEnum;
+
 
         [Header("Stats")]
         [SerializeReference] private BulletSolution _BulletStats;
@@ -30,7 +33,7 @@ namespace FoodWars.Weapons
 
         [Header("Animation")]
         [SerializeField] private Animator _animator;
-        [SerializeField] private ParticleSystem _muzzleFlash;
+        [SerializeField] private MMF_Player _fireFeedback;
 
         #endregion
 
@@ -40,12 +43,14 @@ namespace FoodWars.Weapons
         private UserInputActions _userActions;
         private InputAction _fireAction, _reloadAction;
 
+
         private bool _isBusy = false;
 
         #endregion
 
         #region Properties
         public BulletType BulletType => _type;
+        public GunType GunType => gunEnum;
 
         #endregion
 
@@ -64,6 +69,7 @@ namespace FoodWars.Weapons
         {
             _fireAction.performed += HandleFireAsync;
             _reloadAction.performed += HandleReload;
+            OnMagazineChange?.Invoke(_currentRounds);
             _reloadAction.Enable();
             _fireAction.Enable();
         }
@@ -111,10 +117,11 @@ namespace FoodWars.Weapons
                     _isBusy = false;
                     return;
                 }
-
                 _currentRounds--;
+                _animator?.SetTrigger("Fire");
+                _fireFeedback?.PlayFeedbacks();
                 OnMagazineChange?.Invoke(_currentRounds);
-                _BulletStats.Fire();
+                _BulletStats?.Fire();
                 await UniTask.WaitForSeconds(_fireDelaySeconds, cancellationToken: _cancellationTokenSource.Token);
             }
             _isBusy = false;
