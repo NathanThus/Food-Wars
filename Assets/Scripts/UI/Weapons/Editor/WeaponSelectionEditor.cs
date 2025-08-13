@@ -17,7 +17,13 @@ public class WeaponSelectionEditor : Editor
 
         EditorGUILayout.Space();
 
-        if (GUILayout.Button("Update Weapon List")) UpdateWeaponList();
+        if (GUILayout.Button("Update Weapon List"))
+        {
+            EditorUtility.SetDirty(_weaponSelection);
+            UpdateWeaponList();
+            AssetDatabase.SaveAssets();
+
+        }
     }
 
     private void UpdateWeaponList()

@@ -28,8 +28,8 @@ namespace FoodWars.UI.Weapons
             GunType type = GetNumberFromControl(context.control);
             if (type != GunType.Invalid)
             {
-                Debug.Log($"Number pressed: {type}");
                 _weaponSelector.SwitchWeapon(type);
+                Debug.Log($"Number pressed: {type}");
             }
         }
 
@@ -40,7 +40,7 @@ namespace FoodWars.UI.Weapons
             return controlName switch
             {
                 "1" or "numpad1" => GunType.CroissantRevolver,
-                "2" or "numpad2" => GunType.CroissantRevolver,
+                "2" or "numpad2" => GunType.HotDogRailGun,
                 "3" or "numpad3" => GunType.CroissantRevolver,
                 "4" or "numpad4" => GunType.CroissantRevolver,
                 "5" or "numpad5" => GunType.CroissantRevolver,

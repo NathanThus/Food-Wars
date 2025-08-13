@@ -22,7 +22,14 @@ namespace FoodWars.UI.Weapons
 
         private UserInputActions _userInput;
         private InputAction _openMenu;
+        /// <summary>
+        /// Really only for editor use.
+        /// </summary>
 
+        #endregion
+
+        #region Properties
+        public List<Gun> Guns => _guns;
 
         #endregion
 
@@ -30,8 +37,8 @@ namespace FoodWars.UI.Weapons
 
         private void Awake()
         {
-            _userInput = new UserInputActions();
-            _openMenu = _userInput.Player.OpenMenu;
+            // _userInput = new UserInputActions();
+            // _openMenu = _userInput.Player.OpenMenu;
         }
 
         private void Start()
@@ -41,32 +48,18 @@ namespace FoodWars.UI.Weapons
 
         private void OnEnable()
         {
-            _openMenu.performed += HandleMenuOpen;
-            _openMenu.canceled += HandleMenuClose;
-            _openMenu.Enable();
+            // _openMenu.performed += HandleMenuOpen;
+            // _openMenu.canceled += HandleMenuClose;
+            // _openMenu.Enable();
         }
 
 
         private void OnDisable()
         {
-            _openMenu.performed -= HandleMenuOpen;
-            _openMenu.canceled -= HandleMenuClose;
-            _openMenu.Disable();
+            // _openMenu.performed -= HandleMenuOpen;
+            // _openMenu.canceled -= HandleMenuClose;
+            // _openMenu.Disable();
             _currentGun.OnMagazineChange -= _magazineUI.HandleWeaponFire;
-        }
-
-        #endregion
-
-        #region Event Handlers
-
-        private void HandleMenuOpen(InputAction.CallbackContext _)
-        {
-            throw new NotImplementedException();
-        }
-
-        private void HandleMenuClose(InputAction.CallbackContext _)
-        {
-            throw new NotImplementedException();
         }
 
         #endregion
@@ -80,12 +73,12 @@ namespace FoodWars.UI.Weapons
             if (selectedGun == null) throw new ArgumentOutOfRangeException(nameof(GunType));
 
             _currentGun.OnMagazineChange -= _magazineUI.HandleWeaponFire;
-            _currentGun.enabled = false;
+            _currentGun.gameObject.SetActive(false);
 
-            selectedGun = _currentGun;
+            _currentGun = selectedGun;
 
             _currentGun.OnMagazineChange += _magazineUI.HandleWeaponFire;
-            _currentGun.enabled = true;
+            _currentGun.gameObject.SetActive(true);
         }
 
         #endregion
