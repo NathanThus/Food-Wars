@@ -10,15 +10,15 @@ namespace FoodWars.Weapons
     {
         [SerializeField] private float _range;
         [SerializeField] private LayerMask _layerMask;
-        public HitscanSolution()
-        {
-        }
+        [SerializeField] private ParticleSystem _tracer;
+
+        public HitscanSolution() { }
 
         public override void Fire()
         {
             if (!Physics.Raycast(new Ray(_muzzleTransform.position, _muzzleTransform.forward), out RaycastHit hit, _range))
                 return;
-
+            _tracer?.Play();
             Debug.Log("Hit!");
         }
     }
