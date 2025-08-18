@@ -4,7 +4,8 @@
     "references": [
         "UnityEngine.TestRunner",
         "UnityEditor.TestRunner",
-        "FoodWars.Health"
+        "FoodWars.Health",
+        "UniTask"
     ],
     "includePlatforms": [
         "Editor"
