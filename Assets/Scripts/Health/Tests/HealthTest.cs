@@ -182,8 +182,8 @@ public class HealthTest
         Assert.LessOrEqual(healthObject.HitPoints, 0f);
     }
 
-    [Test]
-    public async void Regeneration_WhenDamagedWithRegenerationEnabled_StartsAfterInitialDelay()
+    [UnityTest]
+    public IEnumerator Regeneration_WhenDamagedWithRegenerationEnabled_StartsAfterInitialDelay() => UniTask.ToCoroutine(async () =>
     {
         var healthObject = SetupHealthComponent();
 
@@ -197,10 +197,10 @@ public class HealthTest
 
         Assert.IsTrue(regenerationStarted);
         Assert.IsTrue(healthObject.IsRegenerating);
-    }
+    });
 
-    [Test]
-    public async void Regeneration_WhenDamagedWithRegenerationDisabled_DoesNotStart()
+    [UnityTest]
+    public IEnumerator Regeneration_WhenDamagedWithRegenerationDisabled_DoesNotStart() => UniTask.ToCoroutine(async () =>
     {
         var healthObject = SetupHealthComponent();
 
@@ -215,10 +215,10 @@ public class HealthTest
         // Assert
         Assert.IsFalse(regenerationStarted);
         Assert.IsFalse(healthObject.IsRegenerating);
-    }
+    });
 
-    [Test]
-    public async void Regeneration_WhenAtFullHealth_DoesNotStart()
+    [UnityTest]
+    public IEnumerator Regeneration_WhenAtFullHealth_DoesNotStart() => UniTask.ToCoroutine(async () =>
     {
         var healthObject = SetupHealthComponent();
 
@@ -232,10 +232,10 @@ public class HealthTest
 
         Assert.IsFalse(regenerationStarted);
         Assert.IsFalse(healthObject.IsRegenerating);
-    }
+    });
 
-    [Test]
-    public async void Regeneration_HealsAtCorrectRate()
+    [UnityTest]
+    public IEnumerator Regeneration_HealsAtCorrectRate() => UniTask.ToCoroutine(async () =>
     {
         var healthObject = SetupHealthComponent();
 
@@ -249,10 +249,10 @@ public class HealthTest
 
         Assert.AreEqual(80f, healthObject.HitPoints, 0.1f);
         Assert.IsTrue(healthObject.IsRegenerating);
-    }
+    });
 
-    [Test]
-    public async void Regeneration_ContinuesUntilFullHealth()
+    [UnityTest]
+    public IEnumerator Regeneration_ContinuesUntilFullHealth() => UniTask.ToCoroutine(async () =>
     {
         var healthObject = SetupHealthComponent();
 
@@ -266,10 +266,10 @@ public class HealthTest
         Assert.AreEqual(100f, healthObject.HitPoints);
         Assert.IsFalse(healthObject.IsRegenerating);
         Assert.IsTrue(regenerationStopped);
-    }
+    });
 
-    [Test]
-    public async void Regeneration_MultipleHealTicks_InvokesOnHealEvent()
+    [UnityTest]
+    public IEnumerator Regeneration_MultipleHealTicks_InvokesOnHealEvent() => UniTask.ToCoroutine(async () =>
     {
         var healthObject = SetupHealthComponent();
 
@@ -282,10 +282,10 @@ public class HealthTest
         await UniTask.WaitForSeconds(15f);
 
         Assert.AreEqual(3, healEventCount);
-    }
+    });
 
-    [Test]
-    public async void Regeneration_WhenDamagedDuringRegeneration_StopsAndRestarts()
+    [UnityTest]
+    public IEnumerator Regeneration_WhenDamagedDuringRegeneration_StopsAndRestarts() => UniTask.ToCoroutine(async () =>
     {
         var healthObject = SetupHealthComponent();
 
@@ -306,10 +306,10 @@ public class HealthTest
         Assert.AreEqual(2, regenerationStartedCount); // Started twice
         Assert.AreEqual(1, regenerationStoppedCount); // Stopped once (when interrupted)
         Assert.IsTrue(healthObject.IsRegenerating); // Should be regenerating again
-    }
+    });
 
-    [Test]
-    public async void Regeneration_WhenHealedToFullExternally_Stops()
+    [UnityTest]
+    public IEnumerator Regeneration_WhenHealedToFullExternally_Stops() => UniTask.ToCoroutine(async () =>
     {
         var healthObject = SetupHealthComponent();
 
@@ -327,10 +327,10 @@ public class HealthTest
 
         Assert.IsFalse(healthObject.IsRegenerating);
         Assert.IsTrue(regenerationStopped);
-    }
+    });
 
-    [Test]
-    public async void Regeneration_WhenKilled_DoesNotStart()
+    [UnityTest]
+    public IEnumerator Regeneration_WhenKilled_DoesNotStart() => UniTask.ToCoroutine(async () =>
     {
         var healthObject = SetupHealthComponent();
 
@@ -345,10 +345,10 @@ public class HealthTest
         Assert.IsTrue(healthObject.IsDead);
         Assert.IsFalse(regenerationStarted);
         Assert.IsFalse(healthObject.IsRegenerating);
-    }
+    });
 
-    [Test]
-    public async void Regeneration_WhenKilledDuringRegeneration_Stops()
+    [UnityTest]
+    public IEnumerator Regeneration_WhenKilledDuringRegeneration_Stops() => UniTask.ToCoroutine(async () =>
     {
         var healthObject = SetupHealthComponent();
 
@@ -367,10 +367,10 @@ public class HealthTest
         Assert.IsTrue(healthObject.IsDead);
         Assert.IsFalse(healthObject.IsRegenerating);
         Assert.IsTrue(regenerationStopped);
-    }
+    });
 
-    [Test]
-    public void Regeneration_WhenGameObjectDisabled_StopsGracefully()
+    [UnityTest]
+    public IEnumerator Regeneration_WhenGameObjectDisabled_StopsGracefully() => UniTask.ToCoroutine(async () =>
     {
         var healthObject = SetupHealthComponent();
 
@@ -380,6 +380,6 @@ public class HealthTest
         healthObject.gameObject.SetActive(false);
 
         Assert.IsFalse(healthObject.IsRegenerating);
-    }
+    });
 
 }
