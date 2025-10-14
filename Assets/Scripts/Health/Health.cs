@@ -133,6 +133,7 @@ namespace FoodWars.Health
 
         public void EnableRegeneration() => _canRegenerate = true;
         public void DisableRegeneration() => _canRegenerate = false;
+        public void SetMaxHealth(float maxHitPoints) => _maxHitPoints = maxHitPoints;
 #endif
 
         private void StopRegeneration()

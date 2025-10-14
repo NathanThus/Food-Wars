@@ -44,8 +44,7 @@ public class HealthTest
 
         var healthComponent = _testObject.AddComponent<Health>();
 
-        typeof(Health).GetField("_maxHitPoints", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance)
-        .SetValue(healthComponent, _defaultMaxHitpoints);
+        healthComponent.SetMaxHealth(_defaultMaxHitpoints);
 
         // Simulate Unity's Awake call
         var awake = typeof(Health).GetMethod("Awake", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
